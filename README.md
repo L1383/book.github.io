@@ -84,6 +84,8 @@
   <div class="novel">
     <input type="text" id="novelInput" placeholder="نام رمان" />
     <select id="categoryInput">
+      <option value="اکشن">اکشن</option>
+      <option value="smut">smut</option>
       <option value="فانتزی">فانتزی</option>
       <option value="عاشقانه">عاشقانه</option>
       <option value="علمی‌تخیلی">علمی‌تخیلی</option>
@@ -102,6 +104,8 @@
     <input type="url" id="linkInput" placeholder="لینک مرجع" />
     <label><input type="checkbox" id="favoriteInput" /> مورد علاقه</label>
     <label><input type="checkbox" id="completedInput" /> تکمیل شده</label>
+    <label><input type="checkbox" id="completedInput" /> ناول</label>
+    <label><input type="checkbox" id="completedInput" /> وب ناول</label>
     <button onclick="addNovel()">➕ افزودن</button>
   </div>
 
@@ -142,7 +146,7 @@
     }
 
     function csvContent() {
-      const headers = ["نام", "دسته", "کل فصل‌ها", "خوانده‌شده", "امتیاز", "لینک", "مورد علاقه", "تکمیل شده"];
+      const headers = ["نام", "دسته", "کل فصل‌ها", "خوانده‌شده", "امتیاز", "لینک", "ناول", "وب ناول", "مورد علاقه", "تکمیل شده"];
       const rows = novels.map(n => [
         n.name,
         n.category,
@@ -150,6 +154,8 @@
         n.chaptersRead,
         n.rating,
         n.link,
+        n.novel,
+        n.webnovel,
         n.favorite ? "بله" : "خیر",
         n.completed ? "بله" : "خیر"
       ]);
