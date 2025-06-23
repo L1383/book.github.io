@@ -90,6 +90,7 @@
       <option value="ماجراجویی">ماجراجویی</option>
       <option value="ترسناک">ترسناک</option>
       <option value="تاریخی">تاریخی</option>
+      <option value="زندگی روزمره">زندگی روزمره</option>
       <option value="درام">درام</option>
       <option value="جنایی">جنایی</option>
       <option value="معمایی">معمایی</option>
