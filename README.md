@@ -169,6 +169,8 @@
       const read = parseInt(document.getElementById('chaptersRead').value);
       const rating = parseFloat(document.getElementById('ratingInput').value);
       const link = document.getElementById('linkInput').value.trim();
+      const novel = document.getElementById('novelInput').value.trim();
+      const webnovel = document.getElementById('webnovelInput').value.trim();
       const favorite = document.getElementById('favoriteInput').checked;
       const completed = document.getElementById('completedInput').checked;
 
@@ -198,6 +200,8 @@
       const chaptersRead = prompt('تعداد فصل‌های خوانده‌شده:', novel.chaptersRead);
       const rating = prompt('امتیاز (از 10):', novel.rating);
       const link = prompt('لینک مرجع:', novel.link);
+      const novel = prompt('آیا ناول است؟:', novel.novel);
+      const webnovel = prompt('آیا وب ناول است؟:', novel.webnovel);
       const favorite = confirm('آیا این رمان مورد علاقه است؟');
       const completed = confirm('آیا این رمان تکمیل شده است؟');
 
@@ -208,6 +212,8 @@
         chaptersRead: parseInt(chaptersRead),
         rating: parseFloat(rating),
         link,
+        novel,
+        webnovel,
         favorite,
         completed
       };
@@ -222,6 +228,8 @@
       document.getElementById('chaptersRead').value = '';
       document.getElementById('ratingInput').value = '';
       document.getElementById('linkInput').value = '';
+      document.getElementById('novelInput').checked = false;
+      document.getElementById('webnovelInput').checked = false;
       document.getElementById('favoriteInput').checked = false;
       document.getElementById('completedInput').checked = false;
     }
@@ -240,6 +248,10 @@
           filtered.sort((a, b) => (b.favorite === true) - (a.favorite === true));
         } else if (sortOption === 'completed') {
           filtered.sort((a, b) => (b.completed === true) - (a.completed === true));
+          } else if (sortOption === 'novel') {
+          filtered.sort((a, b) => (b.novel === true) - (a.novel === true));
+          } else if (sortOption === 'webnovel') {
+          filtered.sort((a, b) => (b.webnovel === true) - (a.webnovel === true));
         } else {
           filtered.sort((a, b) => (b[sortOption] || 0) - (a[sortOption] || 0));
         }
