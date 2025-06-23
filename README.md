@@ -1,9 +1,9 @@
-# book.github.io
+book.github.io
 <html lang="fa">
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <title>Bookmark</title>
+  <title>bookmark</title>
   <style>
     body {
       font-family: sans-serif;
@@ -79,20 +79,17 @@
 </head>
 <body>
 
-  <h1>پیگیری رمان‌ها</h1>
+  <h1>bookmark</h1>
 
   <div class="novel">
     <input type="text" id="novelInput" placeholder="نام رمان" />
     <select id="categoryInput">
-      <option value="اکشن">اکشن</option>
-      <option value="smut">smut</option>
       <option value="فانتزی">فانتزی</option>
       <option value="عاشقانه">عاشقانه</option>
       <option value="علمی‌تخیلی">علمی‌تخیلی</option>
       <option value="ماجراجویی">ماجراجویی</option>
       <option value="ترسناک">ترسناک</option>
       <option value="تاریخی">تاریخی</option>
-      <option value="زندگی روزمره">زندگی روزمره</option>
       <option value="درام">درام</option>
       <option value="جنایی">جنایی</option>
       <option value="معمایی">معمایی</option>
@@ -104,8 +101,6 @@
     <input type="url" id="linkInput" placeholder="لینک مرجع" />
     <label><input type="checkbox" id="favoriteInput" /> مورد علاقه</label>
     <label><input type="checkbox" id="completedInput" /> تکمیل شده</label>
-    <label><input type="checkbox" id="completedInput" /> ناول</label>
-    <label><input type="checkbox" id="completedInput" /> وب ناول</label>
     <button onclick="addNovel()">➕ افزودن</button>
   </div>
 
@@ -146,7 +141,7 @@
     }
 
     function csvContent() {
-      const headers = ["نام", "دسته", "کل فصل‌ها", "خوانده‌شده", "امتیاز", "لینک", "ناول", "وب ناول", "مورد علاقه", "تکمیل شده"];
+      const headers = ["نام", "دسته", "کل فصل‌ها", "خوانده‌شده", "امتیاز", "لینک", "مورد علاقه", "تکمیل شده"];
       const rows = novels.map(n => [
         n.name,
         n.category,
@@ -154,8 +149,6 @@
         n.chaptersRead,
         n.rating,
         n.link,
-        n.novel,
-        n.webnovel,
         n.favorite ? "بله" : "خیر",
         n.completed ? "بله" : "خیر"
       ]);
@@ -169,8 +162,6 @@
       const read = parseInt(document.getElementById('chaptersRead').value);
       const rating = parseFloat(document.getElementById('ratingInput').value);
       const link = document.getElementById('linkInput').value.trim();
-      const novel = document.getElementById('novelInput').value.trim();
-      const webnovel = document.getElementById('webnovelInput').value.trim();
       const favorite = document.getElementById('favoriteInput').checked;
       const completed = document.getElementById('completedInput').checked;
 
@@ -200,8 +191,6 @@
       const chaptersRead = prompt('تعداد فصل‌های خوانده‌شده:', novel.chaptersRead);
       const rating = prompt('امتیاز (از 10):', novel.rating);
       const link = prompt('لینک مرجع:', novel.link);
-      const novel = prompt('آیا ناول است؟:', novel.novel);
-      const webnovel = prompt('آیا وب ناول است؟:', novel.webnovel);
       const favorite = confirm('آیا این رمان مورد علاقه است؟');
       const completed = confirm('آیا این رمان تکمیل شده است؟');
 
@@ -212,8 +201,6 @@
         chaptersRead: parseInt(chaptersRead),
         rating: parseFloat(rating),
         link,
-        novel,
-        webnovel,
         favorite,
         completed
       };
@@ -228,8 +215,6 @@
       document.getElementById('chaptersRead').value = '';
       document.getElementById('ratingInput').value = '';
       document.getElementById('linkInput').value = '';
-      document.getElementById('novelInput').checked = false;
-      document.getElementById('webnovelInput').checked = false;
       document.getElementById('favoriteInput').checked = false;
       document.getElementById('completedInput').checked = false;
     }
@@ -248,10 +233,6 @@
           filtered.sort((a, b) => (b.favorite === true) - (a.favorite === true));
         } else if (sortOption === 'completed') {
           filtered.sort((a, b) => (b.completed === true) - (a.completed === true));
-          } else if (sortOption === 'novel') {
-          filtered.sort((a, b) => (b.novel === true) - (a.novel === true));
-          } else if (sortOption === 'webnovel') {
-          filtered.sort((a, b) => (b.webnovel === true) - (a.webnovel === true));
         } else {
           filtered.sort((a, b) => (b[sortOption] || 0) - (a[sortOption] || 0));
         }
